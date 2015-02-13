@@ -4,18 +4,22 @@
 <body>
 	<?php
 
-$str=$_POST['num'];
-$a=preg_replace('/[^0-9]/','', $str);
+ 
+  if (file_exists('number.txt')) {
+  	
   
-if(isset($_POST['num'])){
-    if ($str=='' || $a=='') {
-    	 $format='';
-    }else{
-	      
+      if(isset($_POST['num'])){
+	  $str=$_POST['num'];
+      $a=preg_replace('/[^0-9]/','', $str);
+      if ($str=='' || $a=='') {
+    	  $format='';
+     }else{
+	       
      
          $format=number_format($a,0,'.',' ');
-       }}else{$format=file_get_contents('number.txt');}
-file_put_contents('number.txt', $format);
+       }}else{$format=file_get_contents('number.txt');}}
+       else{$format='';}
+file_put_contents('number.txt', str_replace(' ','',$format));
 
 
 ?>
