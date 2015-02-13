@@ -6,8 +6,12 @@
 
 $str=$_POST['num'];
 $a=preg_replace('/[^0-9]/','', $str);
+  
+if ($str=="") {
+	$format=$str;
+}else{
   if ($a=="") {
-	       if (file_get_contents('number.txt')!=0) {
+	       if (is_readable('number.txt')) {
 		   $format=file_get_contents('number.txt');
 	       }
 	       else{
@@ -15,7 +19,7 @@ $a=preg_replace('/[^0-9]/','', $str);
                 }
  }else{
   $format=number_format($a,0,'.',' ');
-      }
+      }}
 
 file_put_contents('number.txt', $format);
 
@@ -25,7 +29,7 @@ file_put_contents('number.txt', $format);
  <INPUT NAME="num" VALUE ="<?php  
   //   if (is_readable('number.txt')) {
 	    //echo file_get_contents('number.txt');
-            echo  $format;
+           echo  $format;
   //  }else{echo "";}
 
     ?>" SIZE=20 MAXLEGNTH=20>
