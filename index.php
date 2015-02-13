@@ -7,25 +7,20 @@
 $str=$_POST['num'];
 $a=preg_replace('/[^0-9]/','', $str);
   
-
-  if ($a=="") {
-	       if (is_readable('number.txt')) {
-		   $format=file_get_contents('number.txt');
-	       }
-	       else{
-               $format="";
-               }
-  }else{
-          $format=number_format($a,0,'.',' ');
-       }
-
-
+if(isset($_POST['num'])){
+    if ($str=='' || $a=='') {
+    	 $format='';
+    }else{
+	      
+     
+         $format=number_format($a,0,'.',' ');
+       }}else{$format=file_get_contents('number.txt');}
 file_put_contents('number.txt', $format);
 
 
 ?>
 <FORM  method="POST" >
- <INPUT NAME="num" VALUE ="<?php  
+ <INPUT NAME="num"  VALUE ="<?php  
   //   if (is_readable('number.txt')) {
 	    //echo file_get_contents('number.txt');
            echo  $format;
