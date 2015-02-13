@@ -7,19 +7,18 @@
 $str=$_POST['num'];
 $a=preg_replace('/[^0-9]/','', $str);
   
-if ($str=="") {
-	$format=$str;
-}else{
+
   if ($a=="") {
 	       if (is_readable('number.txt')) {
 		   $format=file_get_contents('number.txt');
 	       }
 	       else{
-         $format="";
-                }
- }else{
-  $format=number_format($a,0,'.',' ');
-      }}
+               $format="";
+               }
+  }else{
+          $format=number_format($a,0,'.',' ');
+       }
+
 
 file_put_contents('number.txt', $format);
 
