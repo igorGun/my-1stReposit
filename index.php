@@ -2,26 +2,24 @@
 <head><title>Разряды</title></head>
 
 <body>
-<FORM  method="POST">
+	<?php
+$str=$_POST['num'];
+$a=preg_replace('/[^0-9]/','', $str);
+if ($a=="") {
+	$format="";
+}else{
+$format=number_format($a,0,'.',' ');}
+file_put_contents('number.txt', $format);
+?>
+<FORM  method="POST" >
  <INPUT NAME="num" VALUE ="<?php
-if (is_writable('number.txt')) {
-	echo file_get_contents('number.txt');
-}else{echo "";}
+     if (is_readable('number.txt')) {
+	    echo file_get_contents('number.txt');
+    }else{echo "";}
 
- ?>" SIZE=20 MAXLEGNTH=20>
-  <p><input type="submit" value="Отправить">
-  
+    ?>" SIZE=20 MAXLEGNTH=20>
+  <p><input type="submit" value="Отправить"> 
  </FORM>
  </body>
-
-<?php
-$str=$_POST['num'];
-
-$a=preg_replace('/[^0-9]/','', $str);
-$format=number_format($a,0,'',' ');
-file_put_contents('number.txt', $format);
-
-
-?>
 
 </html>
