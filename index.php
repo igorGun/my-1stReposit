@@ -9,16 +9,13 @@
        
 	     $str=$_POST['num'];
 	    
-         $a=preg_replace('/[^0-9]/','', $str);
-         if ($str=='' || $a=='') 
-         {
-    	    $format='';
-         }else{ $format=$a;
-           // $format=number_format($a,0,'.',' ');
-         }
+         $format=preg_replace('/[^0-9]/','', $str);
+         
+         	file_put_contents('number.txt', $format);
+        
          
         
-       	 file_put_contents('number.txt', $format);
+       	 
   }else{
          if (file_exists('number.txt')) {
   	         $format=file_get_contents('number.txt');
